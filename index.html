@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan & Save</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .box {
+      background: #ffffff;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .discount {
+      font-size: 48px;
+      color: #e67e22;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    .code {
+      font-size: 22px;
+      background: #eee;
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #777;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h1>🎉 You’ve Unlocked a Discount!</h1>
+    <p>Your exclusive reward is:</p>
+
+    <div class="discount" id="discountText"></div>
+    <div class="code" id="discountCode"></div>
+
+    <p class="note">
+      Valid for one purchase only.<br>
+      Cannot be combined with other offers.
+    </p>
+  </div>
+
+  <script>
+    // Discount options
+    const discounts = [
+      { percent: "30% OFF", code: "RUG30" }, // 60%
+      { percent: "40% OFF", code: "RUG40" }, // 30%
+      { percent: "50% OFF", code: "RUG50" }  // 10%
+    ];
+
+    // Weighted random logic
+    const rand = Math.random();
+    let chosenDiscount;
+
+    if (rand < 0.6) {
+      chosenDiscount = discounts[0]; // 30%
+    } else if (rand < 0.9) {
+      chosenDiscount = discounts[1]; // 40%
+    } else {
+      chosenDiscount = discounts[2]; // 50%
+    }
+
+    // Show result
+    document.getElementById("discountText").innerText = chosenDiscount.percent;
+    document.getElementById("discountCode").innerText = "Code: " + chosenDiscount.code;
+  </script>
+
+</body>
+</html>
+
+
