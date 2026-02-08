@@ -5,140 +5,191 @@
   <title>Scan & Save</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
       min-height: 100vh;
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #ffecd2, #fcb69f);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 20px;
     }
 
     .box {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255,255,255,0.9);
       backdrop-filter: blur(10px);
-      padding: 35px 30px;
-      max-width: 420px;
+      max-width: 430px;
       width: 100%;
-      border-radius: 18px;
-      text-align: center;
+      padding: 30px;
+      border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      animation: popIn 0.7s ease;
+      text-align: center;
+      animation: pop 0.6s ease;
     }
 
-    @keyframes popIn {
-      0% {
-        transform: scale(0.85);
-        opacity: 0;
-      }
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
     h1 {
-      margin: 0 0 10px;
+      margin: 0;
       font-size: 26px;
-      font-weight: 700;
     }
 
     .subtitle {
       color: #555;
-      font-size: 15px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .timer {
+      font-size: 14px;
+      background: #ffeaa7;
+      padding: 8px;
+      border-radius: 8px;
+      margin: 15px 0;
+      font-weight: 600;
     }
 
     .discount {
-      margin: 25px 0 15px;
       font-size: 52px;
-      font-weight: 700;
       color: #e17055;
-      animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.06); }
-      100% { transform: scale(1); }
+      font-weight: 700;
+      margin: 15px 0;
     }
 
     .code {
-      display: inline-block;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 1px;
       background: #2d3436;
       color: #fff;
-      padding: 12px 22px;
+      display: inline-block;
+      padding: 12px 24px;
       border-radius: 10px;
-      margin-bottom: 15px;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .copy-btn {
+      background: #0984e3;
+      color: #fff;
+    }
+
+    .cta-btn {
+      background: #00b894;
+      color: #fff;
+    }
+
+    .benefits {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .benefits li {
+      margin-bottom: 8px;
+    }
+
+    .social {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .whatsapp {
+      margin-top: 15px;
+      font-size: 14px;
     }
 
     .note {
-      font-size: 13px;
-      color: #666;
-      margin-top: 18px;
-      line-height: 1.5;
-    }
-
-    .footer {
-      margin-top: 22px;
       font-size: 12px;
-      color: #888;
+      color: #777;
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
 
-  <div class="box">
-    <h1>🎉 Congratulations!</h1>
-    <p class="subtitle">You’ve unlocked an exclusive discount</p>
+<div class="box">
+  <h1>🎉 Congratulations!</h1>
+  <p class="subtitle">Your exclusive rug discount is ready</p>
 
-    <div class="discount" id="discountText"></div>
-    <div class="code" id="discountCode"></div>
+  <div class="timer">⏳ Offer expires in <span id="countdown">10:00</span></div>
 
-    <p class="note">
-      Valid for one purchase only.<br>
-      Cannot be combined with other offers.
-    </p>
+  <div class="discount" id="discountText"></div>
+  <div class="code" id="discountCode"></div>
 
-    <div class="footer">
-      Thank you for shopping with us ❤️
-    </div>
+  <button class="copy-btn" onclick="copyCode()">📋 Copy Code</button>
+  <button class="cta-btn">🛒 Shop Rugs Now</button>
+
+  <ul class="benefits">
+    <li>✔ Premium handcrafted rugs</li>
+    <li>✔ Easy to clean & long-lasting</li>
+    <li>✔ Free size & color consultation</li>
+  </ul>
+
+  <div class="social">
+    ⭐⭐⭐⭐⭐ 4.8/5 rated by 1,200+ happy customers
   </div>
 
-  <script>
-    const discounts = [
-      { percent: "30% OFF", code: "RUG30" }, // 25%
-      { percent: "40% OFF", code: "RUG40" }, // 60%
-      { percent: "50% OFF", code: "RUG50" }  // 15%
-    ];
+  <div class="whatsapp">
+    📱 Need help? <a href="https://wa.me/919999999999" target="_blank">Chat on WhatsApp</a>
+  </div>
 
-    const rand = Math.random();
-    let chosenDiscount;
+  <p class="note">
+    Valid for one purchase only. Cannot be combined with other offers.
+  </p>
+</div>
 
-    if (rand < 0.25) {
-      chosenDiscount = discounts[0];
-    } else if (rand < 0.85) {
-      chosenDiscount = discounts[1];
-    } else {
-      chosenDiscount = discounts[2];
-    }
+<script>
+  // Discount logic
+  const discounts = [
+    { percent: "30% OFF", code: "RUG30" },
+    { percent: "40% OFF", code: "RUG40" },
+    { percent: "50% OFF", code: "RUG50" }
+  ];
 
-    document.getElementById("discountText").innerText = chosenDiscount.percent;
-    document.getElementById("discountCode").innerText =
-      "CODE: " + chosenDiscount.code;
-  </script>
+  const rand = Math.random();
+  let chosen;
+
+  if (rand < 0.25) chosen = discounts[0];
+  else if (rand < 0.85) chosen = discounts[1];
+  else chosen = discounts[2];
+
+  document.getElementById("discountText").innerText = chosen.percent;
+  document.getElementById("discountCode").innerText = chosen.code;
+
+  // Copy code
+  function copyCode() {
+    navigator.clipboard.writeText(chosen.code);
+    alert("Code copied!");
+  }
+
+  // Countdown timer (10 mins)
+  let time = 600;
+  const countdownEl = document.getElementById("countdown");
+
+  setInterval(() => {
+    let min = Math.floor(time / 60);
+    let sec = time % 60;
+    countdownEl.innerText = `${min}:${sec < 10 ? '0' : ''}${sec}`;
+    if (time > 0) time--;
+  }, 1000);
+</script>
 
 </body>
 </html>
